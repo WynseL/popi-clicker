@@ -19,8 +19,17 @@ class TargetLineView @JvmOverloads constructor(context: Context?,
     private val spaceY = 100f
     private val spaceX = 150f
 
-    private val topOffset = 50f
-    private val leftOffset = 50f
+    var topOffset = 50f
+    var leftOffset = 50f
+
+    var topPoint = 0f to 0f
+        private set
+    var rightPoint = 0f to 0f
+        private set
+    var downPoint = 0f to 0f
+        private set
+    var leftPoint = 0f to 0f
+        private set
 
     private val paint = Paint().apply {
         color = Color.GREEN
@@ -32,6 +41,14 @@ class TargetLineView @JvmOverloads constructor(context: Context?,
 
     private val centerPaint = Paint().apply {
         color = Color.RED
+        style = Paint.Style.FILL
+        strokeJoin = Paint.Join.ROUND
+        strokeCap = Paint.Cap.ROUND
+        strokeWidth = 30f
+    }
+
+    private val testingPaint = Paint().apply {
+        color = Color.MAGENTA
         style = Paint.Style.FILL
         strokeJoin = Paint.Join.ROUND
         strokeCap = Paint.Cap.ROUND
@@ -80,5 +97,14 @@ class TargetLineView @JvmOverloads constructor(context: Context?,
         canvas?.drawPoint(tWidth - spaceX * 2, tHeight - spaceY, centerPaint)
         canvas?.drawPoint(rWidth + spaceX, rHeight + spaceY * 2, centerPaint)
         canvas?.drawPoint(lWidth - spaceX, lHeight + spaceY * 2, centerPaint)
+
+        topPoint = tWidth + spaceX to tHeight
+        rightPoint = rWidth to rHeight + spaceY
+        downPoint = bWidth - spaceX to bHeight
+        leftPoint = lWidth to lHeight - spaceY
+//        canvas?.drawPoint(tWidth + spaceX, tHeight, testingPaint)
+//        canvas?.drawPoint(rWidth, rHeight + spaceY, testingPaint)
+//        canvas?.drawPoint(bWidth  - spaceX, bHeight, testingPaint)
+//        canvas?.drawPoint(lWidth, lHeight - spaceY, testingPaint)
     }
 }

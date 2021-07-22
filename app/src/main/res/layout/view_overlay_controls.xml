@@ -1,33 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/containerOverlay"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/black"
-    android:padding="16dp">
+    android:background="@color/black_90a"
+    android:paddingStart="16dp"
+    android:paddingTop="15dp">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnAdd"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:text="add"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnClose"
+        android:orientation="vertical" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTimerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/timer_in_ms"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnClose"
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibDecrementTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:text="close"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_minus"
+        app:layout_constraintBottom_toBottomOf="@id/tvTimerLabel"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/tvTimer"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@id/tvTimerLabel" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTimer"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/ibDecrementTimer"
+        app:layout_constraintEnd_toStartOf="@id/ibIncrementTimer"
+        app:layout_constraintStart_toEndOf="@id/ibDecrementTimer"
+        app:layout_constraintTop_toTopOf="@id/ibDecrementTimer"
+        tools:text="1000ms" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibIncrementTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_plus"
+        app:layout_constraintBottom_toBottomOf="@id/ibDecrementTimer"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnAdd"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/tvTimer"
+        app:layout_constraintTop_toTopOf="@id/ibDecrementTimer" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPositionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/position"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTimerLabel" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/positions"
+        android:spinnerMode="dropdown"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@id/tvPositionLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@id/tvPositionLabel" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvGridOffset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/grid_offset"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPositionLabel" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibDecrementOffsetX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_minus"
+        app:layout_constraintBottom_toBottomOf="@id/tvGridOffset"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/tvTimer"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@id/tvGridOffset" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvOffsetX"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/ibDecrementOffsetX"
+        app:layout_constraintEnd_toStartOf="@id/ibIncrementOffsetX"
+        app:layout_constraintStart_toEndOf="@id/ibDecrementOffsetX"
+        app:layout_constraintTop_toTopOf="@id/ibIncrementOffsetX"
+        tools:text="50" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibIncrementOffsetX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_plus"
+        app:layout_constraintBottom_toBottomOf="@id/ibDecrementOffsetX"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvOffsetX"
+        app:layout_constraintTop_toTopOf="@id/ibDecrementOffsetX" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibDecrementOffsetY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_minus"
+        app:layout_constraintBottom_toTopOf="@id/barrier"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/tvTimer"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/ibDecrementOffsetX" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvOffsetY"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/ibDecrementOffsetY"
+        app:layout_constraintEnd_toStartOf="@id/ibIncrementOffsetY"
+        app:layout_constraintStart_toEndOf="@id/ibDecrementOffsetY"
+        app:layout_constraintTop_toTopOf="@id/ibIncrementOffsetY"
+        tools:text="50" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibIncrementOffsetY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_plus"
+        app:layout_constraintBottom_toBottomOf="@id/ibDecrementOffsetY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvOffsetY"
+        app:layout_constraintTop_toTopOf="@id/ibDecrementOffsetY" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:barrierDirection="top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ibDecrementOffsetY" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibClose"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_close"
+        android:textColor="@color/white"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/ibPlayStop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/barrier" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibPlayStop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_play_circle_outline"
+        android:textColor="@color/white"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ibClose"
+        app:layout_constraintTop_toTopOf="@id/barrier" />
 </androidx.constraintlayout.widget.ConstraintLayout>

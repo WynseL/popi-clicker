@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Player</string>
+
+    <string name="timer_in_ms">Timer (in ms):</string>
+    <string name="position">Position:</string>
+    <string name="grid_offset">Grid Offset:</string>
+
+    <string-array name="positions">
+        <item>Up</item>
+        <item>Right</item>
+        <item>Down</item>
+        <item>Left</item>
+    </string-array>
 </resources>
